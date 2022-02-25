@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		Build a Survey Form using HTML and CSS
+	</title>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<style>
+		/* Styling the Body element i.e. Color,
+		Font, Alignment */
+		body {
+			/* background-color: #05c46b; */
+			font-family: Verdana;
+			text-align: center;
+		}
+
+		.main {
+			position: relative;
+		}
+
+		/* Styling the Form (Color, Padding, Shadow) */
+		form {
+			background-color: #fff;
+			max-width: 500px;
+			margin: 50px auto;
+			padding: 30px 20px;
+			box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+		}
+
+		/* Styling form-control Class */
+		.form-control {
+			text-align: left;
+			margin-bottom: 25px;
+		}
+
+		/* Styling form-control Label */
+		.form-control label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		/* Styling form-control input,
+		select, textarea */
+		.form-control input,
+		.form-control select,
+		.form-control textarea {
+			border: 1px solid #777;
+			border-radius: 2px;
+			font-family: inherit;
+			padding: 10px;
+			display: block;
+			width: 95%;
+		}
+
+		/* Styling form-control Radio
+		button and Checkbox */
+		.form-control input[type="radio"],
+		.form-control input[type="checkbox"] {
+			display: inline-block;
+			width: auto;
+		}
+
+		/* Styling Button */
+		button {
+			background-color: #05c46b;
+			border: 1px solid #777;
+			border-radius: 2px;
+			font-family: inherit;
+			font-size: 21px;
+			display: block;
+			width: 100%;
+			margin-top: 50px;
+			margin-bottom: 20px;
+		}
+
+		table {
+			border-collapse: collapse;
+			border: 1px solid rgb(31, 43, 214);
+		}
+
+		tr {
+			border: 1px dotted rgb(34, 56, 67);
+		}
+
+		th {
+			text-align: center;
+			width: 50px;
+			padding: 25px;
+		}
+
+		.btn {
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+
+		.loading {
+			/* display: inline-block;
+			position: fixed; */
+			/* visibility: hidden; */
+			position: absolute;
+			width: 100%;
+			height: 130vh;
+			background: rgba(255, 255, 255, 0.8) url(loader.gif) no-repeat center;
+			z-index: 99999;
+			top: 0;
+
+
+		}
+	</style>
+
+
+</head>
+
+<body>
+	<h1>Give Your Data</h1>
+
+	<!-- Create Form -->
+	<div class="main">
+		<form id="form" method="post">
+
+			<!-- Details -->
+			<div class="form-control">
+				<label for="name" id="label-name">
+					Name
+				</label>
+
+				<!-- Input Type Text -->
+				<input type="text" id="name" name="name" onchange="handleOnChange(this)"
+					placeholder="Enter your name" />
+			</div>
+
+			<div class="form-control">
+				<label for="email" id="label-email">
+					Email
+				</label>
+
+				<!-- Input Type Email-->
+				<input type="email" id="email" name="Email" onchange="handleOnChange(this)"
+					placeholder="Enter your email" />
+			</div>
+
+			<div class="form-control">
+				<label for="age" id="label-age">
+					Age
+				</label>
+
+				<!-- Input Type Text -->
+				<input type="text" id="age" name="age" onchange="handleOnChange(this)" placeholder="Enter your age" />
+			</div>
+
+			<div class="form-control">
+				<label for="birth-date" id="label-birth-date">
+					Birth-Date
+				</label>
+
+				<!-- Input Type Text -->
+				<input type="date" id="birth-date" onchange="handleOnChange(this)" name="birth_date"
+					placeholder="Enter your birth-Date" />
+			</div>
+
+			<div class="form-control">
+				<label for="mobile" id="label-mobile">
+					Mobile No.
+				</label>
+
+				<!-- Input Type Text -->
+				<input type="tel" id="mobile" name="mobile" onchange="handleOnChange(this)" maxlength=10
+					placeholder="Enter your Mobile No." />
+			</div>
+
+			<div class="form-control ">
+				<label for="favourite" id="label-favourite">
+					Favourite Color
+				</label>
+
+				<!-- Input Type Text -->
+				<input type="color" name="favourite_color" onchange="handleOnChange(this)" id="favourite" />
+			</div>
+
+			<div class="form-control">
+				<label for="role" id="label-role">
+					Which option best describes you?
+				</label>
+
+				<!-- Dropdown options -->
+				<select name="role" id="role" onchange="handleOnChange(this)">
+					<option value="student">Student</option>
+					<option value="intern">Intern</option>
+					<option value="professional">
+						Professional
+					</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+			<!-- //for country -->
+			<div class="form-control">
+				<label for="role" id="label-role">
+					Select Your country!
+				</label>
+
+				<!-- Dropdown options -->
+				<select onchange="onCountryChange(this)" name="country" id="country">
+					<option value="">Select Country</option>
+				</select>
+			</div>
+
+			<!-- //for state -->
+			<div class="form-control">
+				<label>
+					Select Your States!
+				</label>
+
+				<!-- Dropdown options -->
+				<select id="state" onchange="onStateChange(this)" name="state">
+					<option value="">Select State</option>
+				</select>
+			</div>
+
+			<!-- //for cities -->
+			<div class="form-control">
+				<label for="role" id="label-role">
+					Select Your City!
+				</label>
+
+				<!-- Dropdown options -->
+				<select id="city" onchange="handleOnChange(this)" name="city">
+					<option value="">Select city</option>
+				</select>
+			</div>
+
+
+			<div class="form-control">
+				<label>
+					Would you recommed GeeksforGeeks
+					to a friend?
+				</label>
+
+				<!-- Input Type Radio Button -->
+				<label for="recommed-1">
+					<input type="radio" id="recommed-0" name="recomend" onchange="handleOnChange(this)"
+						value="yes">Yes</input>
+				</label>
+				<label for="recommed-2">
+					<input type="radio" id="recommed-1" value="no" onchange="handleOnChange(this)"
+						name="recomend">No</input>
+				</label>
+				<label for="recommed-3">
+					<input type="radio" id="recommed-2" value="may be" onchange="handleOnChange(this)"
+						name="recomend">Maybe</input>
+				</label>
+			</div>
+
+			<div class="form-control">
+				<label>
+					Choos your Gender?
+				</label>
+
+				<!-- Input Type Radio Button -->
+				<label for="recommed-4">
+					<input type="radio" id="recommed4" onchange="handleOnChange(this)" value="Male"
+						name="Gender">Male</input>
+				</label>
+				<label for="recommed-5">
+					<input type="radio" id="recommed5" onchange="handleOnChange(this)" value="Female"
+						name="Gender">Female</input>
+				</label>
+				<label for="recommed-6">
+					<input type="radio" id="recommed6" onchange="handleOnChange(this)" value="Other"
+						name="Gender">Other</input>
+				</label>
+			</div>
+
+			<div class="form-control">
+				<label>Languages and Frameworks known
+					<small>(Check all that apply)</small>
+				</label>
+				<!-- Input Type Checkbox -->
+
+				<label for="inp-2">
+					<input type="checkbox" value="gujarati" id="gujarati" name="language"onchange="handleOnChange(this)" >Gujarati</input></label>
+				<label for="inp-3">
+					<input type="checkbox" value="english" id="english" name="language" onchange="handleOnChange(this)">English</input></label>
+				<label for="inp-4">
+					<input type="checkbox" value="hindi" id="hindi" name="language"onchange="handleOnChange(this)">Hindi</input></label>
+
+			</div>
+
+			<div class="form-control">
+				<label for="comment">
+					Any comments or suggestions
+				</label>
+
+				<!-- multi-line text input control -->
+				<textarea name="comment" id="comment" onchange="handleOnChange(this)"
+					placeholder="Enter your comment here">
+			</textarea>
+			</div>
+
+			<!-- Multi-line Text Input Control -->
+			<button type="button" value="submit" onclick="viral()">
+				Submit
+			</button>
+
+
+		</form>
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Age</th>
+				<th scope="col">Birth-Date</th>
+				<th scope="col">Mobile-no</th>
+				<th scope="col">Favourite-color</th>
+				<th scope="col">Yourself</th>
+				<th scope="col">Country</th>
+				<th scope="col">State</th>
+				<th scope="col">City</th>
+				<th scope="col">Recommed GfG</th>
+				<th scope="col">Gender</th>
+				<th scope="col">Language</th>
+				<th scope="col">Comments</th>
+				<th scope="col">Edit</th>
+				<th scope="col">Deleted</th>
+			</tr>
+		</thead>
+
+
+		<tbody id="store">
+		</tbody>
+
+	</table>
+
+	</div>
+	<div id="loader"></div>
+
+	<script>
+
+		var obj = {};
+		var editable = false;
+		var index;
+		let name = document.getElementById("name");
+		let email = document.getElementById("email");
+		let age = document.getElementById("age");
+		let birth_date = document.getElementById("birth-date");
+		let mobile = document.getElementById("mobile");
+		let favourite = document.getElementById("favourite");
+		let role = document.getElementById("role");
+		let country = document.getElementById("country");
+		let state = document.getElementById("state");
+		let city = document.getElementById("city");
+		let comment = document.getElementById("comment");
+		let recommed0 = document.getElementById("recommed-0");
+		let recommed1 = document.getElementById("recommed-1");
+		let recommed2 = document.getElementById("recommed-2");
+		let Gender = document.getElementsByName("Gender");
+		var load = document.getElementById("loading");
+
+		function loadfun() {
+			load.style.display = "none";
+		}
+		//start country state city
+
+		const RAPIDAPI_API_URL =
+			"https://countriesnow.space/api/v0.1/countries/states";
+		const CITY_API_URL =
+			"https://countriesnow.space/api/v0.1/countries/state/cities";
+
+		axios
+			.get(RAPIDAPI_API_URL)
+			// Handle a successful response from the server
+			.then((response) => {
+				// Getting a data object from response that contains the necessary data from the server
+				const data = response.data.data;
+				//   console.log("data", response, data);
+				data.forEach((element) => {
+					var country = document.getElementById("country");
+					var option = document.createElement("option");
+					option.setAttribute("value", element.name);
+
+					option.innerText = element.name;
+					country.appendChild(option);
+				});
+			})
+			// Catch and print errors if any
+			.catch((error) => console.error("On create student error", error));
+
+		function onCountryChange(e) {
+			if (e) {
+				obj[e.name] = e.value;
+			}
+			document.getElementById("state").innerHTML = "Select state ";
+			var abc = document.getElementById("country").value;
+
+			axios
+				.post(RAPIDAPI_API_URL, { country: abc })
+
+				.then((response) => {
+					const data = response.data.data.states;
+
+					data.forEach((element) => {
+						var state = document.getElementById("state");
+						var option = document.createElement("option");
+						option.setAttribute("value", element.name);
+
+						option.innerText = element.name;
+						state.appendChild(option);
+					});
+				})
+				.catch((error) => console.error("On create student error", error));
+		}
+
+		function onStateChange(e) {
+			if (e) {
+				obj[e.name] = e.value;
+			}
+			document.getElementById("city").innerText = "";
+			var abc = document.getElementById("country").value;
+			var abcd = document.getElementById("state").value;
+
+			axios
+				.post(CITY_API_URL, { country: abc, state: abcd })
+
+				.then((response) => {
+					const data = response.data.data;
+
+					data.forEach((element) => {
+						var city = document.getElementById("city");
+						var option = document.createElement("option");
+						option.setAttribute("value", element);
+						option.innerText = element;
+						city.appendChild(option);
+					});
+					document.getElementById("loader").removeAttribute("class");
+
+				})
+				.catch((error) => console.error("On create student error", error));
+		}
+
+		//end country state city
+		var arr = [];
+		function handleOnChange(e) {
+
+
+			
+			if (e.name == "language") {
+				console.log("language",e.name);
+				if (e.checked === true) {
+					arr.push(e.value);
+					
+				}
+				else if (e.checked === false) {
+					let index = arr.indexOf(e.value);
+					arr.splice(index,1);
+					
+				}
+				
+				console.log("arr", arr);
+			obj[e.name] = arr;
+			} 
+			
+			else {
+				// console.log("e", e.name, e.value)
+				obj[e.name] = e.value;
+				console.log("obj", obj)
+			}
+
+		}
+		//   let age = document.getElementById("age");
+		function viral(e) {
+			// var markedCheckbox = document.getElementsByName('language');
+			// // console.log("markedCheckbox", markedCheckbox);
+			// let arr = [];
+			// for (var checkbox of markedCheckbox) {
+
+			// 	if (checkbox.checked) {
+
+			// 		arr.push(checkbox.value)
+
+			// 	}
+			// }
+			// obj['language'] = arr;
+			if (editable == false) {
+				var crud = JSON.parse(localStorage.getItem("crud"));
+				// console.log(crud)
+				if (crud == undefined) {
+					var crud = [];
+					obj.id = 1;
+					crud.push(obj);
+					localStorage.setItem("crud", JSON.stringify(crud));
+				} else {
+					obj.id = crud[crud.length - 1].id + 1;
+					crud.push(obj);
+					localStorage.setItem("crud", JSON.stringify(crud));
+				}
+
+				document.getElementById("form").reset();
+				document.getElementById("store").innerHTML = "";
+				insert();
+
+			} else {
+				updateData(index);
+			}
+			document.getElementById("form").reset();
+
+		}
+
+		function updateData(index) {
+			editable = false;
+			var crud = JSON.parse(localStorage.getItem("crud"));
+			crud.splice(index, 1, obj);
+			localStorage.setItem("crud", JSON.stringify(crud));
+			// console.log(crud);
+			document.getElementById("store").innerHTML = "";
+			document.getElementById("form").reset();
+			insert();
+		}
+
+		//insert form data into table
+		insert();
+		function insert() {
+			var data = JSON.parse(localStorage.getItem("crud"));
+			// console.log(data);
+			data.length > 0 && data.forEach((ele, i) => {
+				let row = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = ele.name;
+				row.appendChild(td1);
+				let td2 = document.createElement("td");
+				td2.innerText = ele.Email;
+				row.appendChild(td2);
+				let td4 = document.createElement("td");
+				td4.innerText = ele.age;
+				row.appendChild(td4);
+				let td5 = document.createElement("td");
+				td5.innerText = ele.birth_date;
+				row.appendChild(td5);
+				let td6 = document.createElement("td");
+				td6.innerText = ele.mobile;
+				row.appendChild(td6);
+				let td7 = document.createElement("td");
+				td7.innerText = ele.favourite_color;
+				row.appendChild(td7);
+				let td8 = document.createElement("td");
+				td8.innerText = ele.role;
+				row.appendChild(td8);
+				let td16 = document.createElement("td");
+				td16.innerText = ele.country;
+				row.appendChild(td16);
+				let td14 = document.createElement("td");
+				td14.innerText = ele.state;
+				row.appendChild(td14);
+				let td15 = document.createElement("td");
+				td15.innerText = ele.city;
+				row.appendChild(td15);
+				let td9 = document.createElement("td");
+				td9.innerText = ele.recomend;
+				row.appendChild(td9);
+				let td10 = document.createElement("td");
+				td10.innerText = ele.Gender;
+				row.appendChild(td10);
+				let td11 = document.createElement("td");
+				td11.innerText = ele.language;
+				row.appendChild(td11);
+				let td3 = document.createElement("td");
+				td3.innerText = ele.comment;
+				row.appendChild(td3);
+
+				let td12 = document.createElement("td");
+				let edit = document.createElement("button")
+				edit.setAttribute('id', 'btn');
+				edit.setAttribute('value', 'Edit');
+				edit.setAttribute('class', 'btn');
+				edit.innerText = 'Edit';
+				edit.addEventListener("click", () => {
+					document.getElementById("loader").setAttribute("class", "loading");
+					editForm(i)
+				});
+				td12.appendChild(edit);
+				row.appendChild(td12);
+
+				let td13 = document.createElement("td");
+				let deleted = document.createElement("button")
+				deleted.setAttribute('id', 'btn2');
+				deleted.setAttribute('value', 'Deleted');
+				deleted.setAttribute('class', 'btn');
+				deleted.innerText = 'Deleted';
+				deleted.addEventListener("click", () => deletedForm(i));
+				td13.appendChild(deleted);
+				row.appendChild(td13);
+				document.getElementById("store").appendChild(row);
+				// console.log(data);
+			})
+		};
+		//    document.getElementById("btn").addEventListener("click", editForm);
+
+		function editForm(i) {
+
+			editable = true;
+			index = i;
+			document.getElementById("form").reset();
+			window.scrollTo(0, 0);
+			let crud = JSON.parse(localStorage.getItem("crud"));
+			var savedData = crud[i]; // get and parse the saved data from localStorage
+			obj = crud[i];
+			let formElements = form.elements;
+
+
+			for (const element of formElements) {
+
+				if (element.name in savedData) {
+
+					if (element.name == "recomend") {
+						if (savedData.recomend === "yes") {
+							recommed0.checked = true;
+						} else if (savedData.recomend === "no") {
+							recommed1.checked = true;
+						} else if (savedData.recomend === "may be") {
+							recommed2.checked = true;
+						}
+					} else if (element.name == "Gender") {
+						if (savedData.Gender === "Male") {
+							recommed4.checked = true;
+						} else if (savedData.Gender === "Female") {
+							recommed5.checked = true;
+							recommed5.value = savedData[element.name];
+						} else if (savedData.Gender === "Other") {
+							recommed6.checked = true;
+							recommed6.value = savedData[element.name];
+						}
+					} else if (element.name == "language") {
+						if (savedData.language.includes("gujarati")) {
+							document.getElementById("gujarati").checked = true;
+						}
+						if (savedData.language.includes("english")) {
+							document.getElementById("english").checked = true;
+						}
+						if (savedData.language.includes("hindi")) {
+							document.getElementById("hindi").checked = true;
+						}
+
+					} else if (element.name == "country") {
+						element.value = savedData[element.name];
+						onCountryChange();
+					}
+					else if (element.name == "state") {
+						setTimeout(() => {
+							element.value = savedData[element.name]
+							onStateChange()
+						}, 2000);
+					}
+					else if (element.name == "city") {
+						setTimeout(() => { element.value = savedData[element.name] }, 4000);
+					}
+					else {
+
+						element.value = savedData[element.name];
+
+						// onStateChange(); 
+					}
+				}
+			}
+		}
+
+
+		function deletedForm(i) {
+
+			var crud = JSON.parse(localStorage.getItem("crud"));
+			if(crud.length === 1){
+				localStorage.removeItem("crud")
+			}
+			else{
+				crud.splice(i, 1);
+			localStorage.setItem("crud", JSON.stringify(crud));
+			// updateData();
+			}
+			document.getElementById("store").innerHTML = "";
+			insert();
+			
+		}
+	</script>
+
+</body>
+
+</html>

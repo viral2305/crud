@@ -130,7 +130,8 @@
 				</label>
 
 				<!-- Input Type Text -->
-				<input type="text" id="name" name="name" placeholder="Enter your name" />
+				<input type="text" id="name" name="name" onchange="handleOnChange(this)"
+					placeholder="Enter your name" />
 			</div>
 
 			<div class="form-control">
@@ -139,7 +140,8 @@
 				</label>
 
 				<!-- Input Type Email-->
-				<input type="email" id="email" name="Email" placeholder="Enter your email" />
+				<input type="email" id="email" name="Email" onchange="handleOnChange(this)"
+					placeholder="Enter your email" />
 			</div>
 
 			<div class="form-control">
@@ -148,7 +150,7 @@
 				</label>
 
 				<!-- Input Type Text -->
-				<input type="text" id="age" name="age" placeholder="Enter your age" />
+				<input type="text" id="age" name="age" onchange="handleOnChange(this)" placeholder="Enter your age" />
 			</div>
 
 			<div class="form-control">
@@ -157,7 +159,8 @@
 				</label>
 
 				<!-- Input Type Text -->
-				<input type="date" id="birth-date" name="birth_date" placeholder="Enter your birth-Date" />
+				<input type="date" id="birth-date" onchange="handleOnChange(this)" name="birth_date"
+					placeholder="Enter your birth-Date" />
 			</div>
 
 			<div class="form-control">
@@ -166,7 +169,8 @@
 				</label>
 
 				<!-- Input Type Text -->
-				<input type="tel" id="mobile" name="mobile" maxlength=10 placeholder="Enter your Mobile No." />
+				<input type="tel" id="mobile" name="mobile" onchange="handleOnChange(this)" maxlength=10
+					placeholder="Enter your Mobile No." />
 			</div>
 
 			<div class="form-control ">
@@ -175,7 +179,7 @@
 				</label>
 
 				<!-- Input Type Text -->
-				<input type="color" name="favourite_color" id="favourite" />
+				<input type="color" name="favourite_color" onchange="handleOnChange(this)" id="favourite" />
 			</div>
 
 			<div class="form-control">
@@ -184,7 +188,7 @@
 				</label>
 
 				<!-- Dropdown options -->
-				<select name="role" id="role">
+				<select name="role" id="role" onchange="handleOnChange(this)">
 					<option value="student">Student</option>
 					<option value="intern">Intern</option>
 					<option value="professional">
@@ -200,7 +204,7 @@
 				</label>
 
 				<!-- Dropdown options -->
-				<select onchange="onCountryChange()" name="country" id="country">
+				<select onchange="onCountryChange(this)" name="country" id="country">
 					<option value="">Select Country</option>
 				</select>
 			</div>
@@ -212,7 +216,7 @@
 				</label>
 
 				<!-- Dropdown options -->
-				<select id="state" onchange="onStateChange()" name="state">
+				<select id="state" onchange="onStateChange(this)" name="state">
 					<option value="">Select State</option>
 				</select>
 			</div>
@@ -224,7 +228,7 @@
 				</label>
 
 				<!-- Dropdown options -->
-				<select id="city" name="city">
+				<select id="city" onchange="handleOnChange(this)" name="city">
 					<option value="">Select city</option>
 				</select>
 			</div>
@@ -238,13 +242,16 @@
 
 				<!-- Input Type Radio Button -->
 				<label for="recommed-1">
-					<input type="radio" id="recommed-0" name="recomend" value="yes">Yes</input>
+					<input type="radio" id="recommed-0" name="recomend" onchange="handleOnChange(this)"
+						value="yes">Yes</input>
 				</label>
 				<label for="recommed-2">
-					<input type="radio" id="recommed-1" value="no" name="recomend">No</input>
+					<input type="radio" id="recommed-1" value="no" onchange="handleOnChange(this)"
+						name="recomend">No</input>
 				</label>
 				<label for="recommed-3">
-					<input type="radio" id="recommed-2" value="may be" name="recomend">Maybe</input>
+					<input type="radio" id="recommed-2" value="may be" onchange="handleOnChange(this)"
+						name="recomend">Maybe</input>
 				</label>
 			</div>
 
@@ -255,13 +262,16 @@
 
 				<!-- Input Type Radio Button -->
 				<label for="recommed-4">
-					<input type="radio" id="recommed4" value="Male" name="Gender">Male</input>
+					<input type="radio" id="recommed4" onchange="handleOnChange(this)" value="Male"
+						name="Gender">Male</input>
 				</label>
 				<label for="recommed-5">
-					<input type="radio" id="recommed5" value="Female" name="Gender">Female</input>
+					<input type="radio" id="recommed5" onchange="handleOnChange(this)" value="Female"
+						name="Gender">Female</input>
 				</label>
 				<label for="recommed-6">
-					<input type="radio" id="recommed6" value="Other" name="Gender">Other</input>
+					<input type="radio" id="recommed6" onchange="handleOnChange(this)" value="Other"
+						name="Gender">Other</input>
 				</label>
 			</div>
 
@@ -272,11 +282,11 @@
 				<!-- Input Type Checkbox -->
 
 				<label for="inp-2">
-					<input type="checkbox" value="gujarati" id="gujarati" name="language">Gujarati</input></label>
+					<input type="checkbox" value="gujarati" id="gujarati" name="language"onchange="handleOnChange(this)" >Gujarati</input></label>
 				<label for="inp-3">
-					<input type="checkbox" value="english" id="english" name="language">English</input></label>
+					<input type="checkbox" value="english" id="english" name="language" onchange="handleOnChange(this)">English</input></label>
 				<label for="inp-4">
-					<input type="checkbox" value="hindi" id="hindi" name="language">Hindi</input></label>
+					<input type="checkbox" value="hindi" id="hindi" name="language"onchange="handleOnChange(this)">Hindi</input></label>
 
 			</div>
 
@@ -286,7 +296,8 @@
 				</label>
 
 				<!-- multi-line text input control -->
-				<textarea name="comment" id="comment" placeholder="Enter your comment here">
+				<textarea name="comment" id="comment" onchange="handleOnChange(this)"
+					placeholder="Enter your comment here">
 			</textarea>
 			</div>
 
@@ -381,16 +392,19 @@
 			// Catch and print errors if any
 			.catch((error) => console.error("On create student error", error));
 
-		function onCountryChange() {
+		function onCountryChange(e) {
+			if (e) {
+				obj[e.name] = e.value;
+			}
 			document.getElementById("state").innerHTML = "Select state ";
 			var abc = document.getElementById("country").value;
-			
+
 			axios
 				.post(RAPIDAPI_API_URL, { country: abc })
 
 				.then((response) => {
 					const data = response.data.data.states;
-					
+
 					data.forEach((element) => {
 						var state = document.getElementById("state");
 						var option = document.createElement("option");
@@ -404,16 +418,19 @@
 		}
 
 		function onStateChange(e) {
+			if (e) {
+				obj[e.name] = e.value;
+			}
 			document.getElementById("city").innerText = "";
 			var abc = document.getElementById("country").value;
 			var abcd = document.getElementById("state").value;
-			
+
 			axios
 				.post(CITY_API_URL, { country: abc, state: abcd })
 
 				.then((response) => {
 					const data = response.data.data;
-					
+
 					data.forEach((element) => {
 						var city = document.getElementById("city");
 						var option = document.createElement("option");
@@ -422,59 +439,54 @@
 						city.appendChild(option);
 					});
 					document.getElementById("loader").removeAttribute("class");
+
 				})
 				.catch((error) => console.error("On create student error", error));
 		}
 
 		//end country state city
+		var arr = [];
+		function handleOnChange(e) {
 
+
+			
+			if (e.name == "language") {
+				console.log("language",e.name);
+				if (e.checked === true) {
+					arr.push(e.value);
+					
+				}
+				else if (e.checked === false) {
+					let index = arr.indexOf(e.value);
+					arr.splice(index,1);
+					
+				}
+				
+				console.log("arr", arr);
+			obj[e.name] = arr;
+			} 
+			
+			else {
+				console.log("e", e.name, e.value)
+				obj[e.name] = e.value;
+				console.log("obj", obj)
+			}
+
+		}
 		//   let age = document.getElementById("age");
 		function viral(e) {
+			// var markedCheckbox = document.getElementsByName('language');
+			// // console.log("markedCheckbox", markedCheckbox);
+			// let arr = [];
+			// for (var checkbox of markedCheckbox) {
 
-			obj["name"] = name.value;
-			obj["Email"] = email.value;
-			obj["age"] = age.value;
-			obj["birth_date"] = birth_date.value;
-			obj["mobile"] = mobile.value;
-			obj["favourite_color"] = favourite.value;
-			obj["role"] = role.value;
-			obj["country"] = country.value;
-			obj["state"] = state.value;
-			obj["city"] = city.value;
+			// 	if (checkbox.checked) {
 
-			if (recommed0.checked == true) {
-				obj["recomend"] = recommed0.value;
-			}
-			else if (recommed1.checked == true) {
-				obj["recomend"] = recommed1.value;
-			}
-			else if (recommed2.checked == true) {
-				obj["recomend"] = recommed2.value;
-			}
-			var getSelectedValue = document.querySelector('input[name="Gender"]:checked');
-			// console.log("getSelectedValue",getSelectedValue.checked);
-			if (getSelectedValue != null) {
-				obj["Gender"] = getSelectedValue.value;
-			}
-			else {
-				obj["Gender"] = "Not selected";
-			}
+			// 		arr.push(checkbox.value)
 
-			var markedCheckbox = document.getElementsByName('language');
-			// console.log("markedCheckbox", markedCheckbox);
-			let arr = [];
-			for (var checkbox of markedCheckbox) {
-				// console.log("checkbox.checked", checkbox.checked);
-				// console.log("checkbox", checkbox);
-				if (checkbox.checked) {
-					// console.log("checkbox.value", checkbox.value);
-					arr.push(checkbox.value)
-					// console.log("language", arr);
-				}
-			}
-			obj["language"] = arr;
-			obj["comment"] = comment.value;
-
+			// 	}
+			// }
+			// obj['language'] = arr;
 			if (editable == false) {
 				var crud = JSON.parse(localStorage.getItem("crud"));
 				// console.log(crud)
@@ -516,7 +528,7 @@
 		function insert() {
 			var data = JSON.parse(localStorage.getItem("crud"));
 			// console.log(data);
-			data.forEach((ele, i) => {
+			data.length > 0 && data.forEach((ele, i) => {
 				let row = document.createElement("tr");
 				let td1 = document.createElement("td");
 				td1.innerText = ele.name;
@@ -567,10 +579,10 @@
 				edit.setAttribute('value', 'Edit');
 				edit.setAttribute('class', 'btn');
 				edit.innerText = 'Edit';
-				edit.addEventListener("click", () =>{
-					document.getElementById("loader").setAttribute("class","loading");
+				edit.addEventListener("click", () => {
+					document.getElementById("loader").setAttribute("class", "loading");
 					editForm(i)
-				} );
+				});
 				td12.appendChild(edit);
 				row.appendChild(td12);
 
@@ -590,14 +602,14 @@
 		//    document.getElementById("btn").addEventListener("click", editForm);
 
 		function editForm(i) {
-			
+
 			editable = true;
 			index = i;
 			document.getElementById("form").reset();
-
+			window.scrollTo(0, 0);
 			let crud = JSON.parse(localStorage.getItem("crud"));
 			var savedData = crud[i]; // get and parse the saved data from localStorage
-
+			obj = crud[i];
 			let formElements = form.elements;
 
 
@@ -659,11 +671,19 @@
 
 
 		function deletedForm(i) {
+
 			var crud = JSON.parse(localStorage.getItem("crud"));
-			crud.splice(i, 1);
+			if(crud.length === 1){
+				localStorage.removeItem("crud")
+			}
+			else{
+				crud.splice(i, 1);
 			localStorage.setItem("crud", JSON.stringify(crud));
-			updateData();
-			onStateChange();
+			// updateData();
+			}
+			document.getElementById("store").innerHTML = "";
+			insert();
+			
 		}
 	</script>
 
